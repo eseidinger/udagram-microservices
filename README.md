@@ -1,3 +1,77 @@
+# Udagram Microservices on EKS
+
+## Resources
+
+### Links
+
+https://github.com/eseidinger/udagram-microservices
+
+https://hub.docker.com/repository/docker/eseidinger/udacity-frontend
+
+https://hub.docker.com/repository/docker/eseidinger/udacity-restapi-feed
+
+https://hub.docker.com/repository/docker/eseidinger/udacity-restapi-user
+
+https://hub.docker.com/repository/docker/eseidinger/reverseproxy
+
+### Screenshots of Travis CI
+![Travis main](screenshots/travis_main.png)
+
+![Travis branch](screenshots/travis_branch.png)
+
+### Screenshot of Pods
+
+![Pods](screenshots/pods.png)
+
+### Screenshot of the Application
+
+![Application](screenshots/application.png)
+
+## Build and Deploy Docker Images
+
+    docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build
+    docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml push
+
+## Deploy to Kubernetes Cluster
+
+    kubectl apply -f udacity-c3-deployment/k8s/backend-feed-deployment.yaml
+    kubectl apply -f udacity-c3-deployment/k8s/backend-feed-service.yaml
+    kubectl apply -f udacity-c3-deployment/k8s/backend-user-deployment.yaml
+    kubectl apply -f udacity-c3-deployment/k8s/backend-user-service.yaml
+    kubectl apply -f udacity-c3-deployment/k8s/reverseproxy-deployment.yaml
+    kubectl apply -f udacity-c3-deployment/k8s/reverseproxy-service.yaml
+    kubectl apply -f udacity-c3-deployment/k8s/frontend-deployment.yaml
+    kubectl apply -f udacity-c3-deployment/k8s/frontend-service.yaml
+
+## Upgrade
+
+On _main_ branch:
+
+* build and push new image versions to Docker Hub
+* update image versions in deployment YAML files
+* deploy to kubernetes cluster
+
+Building and deploying can be done via Travis CI by simply pushing _main_ to GitHub.
+
+### Rollback
+
+* downgrade image versions in deployment YAML files
+* deploy to kubernetes cluster
+
+## A/B Deployment
+
+On branch _mybranch_ deployments have suffix _-mybranch_:
+
+* build and push a new image versions to Docker Hub
+* update image versions in deployment YAML files
+* deploy to kubernetes cluster
+
+Building and deploying can also be done via Travis CI by simply pushing _mybranch_ to GitHub.
+
+### Rollback
+
+Delete the deployments containing the suffix _-mybranch_
+
 # Udagram Image Filtering Microservice
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
