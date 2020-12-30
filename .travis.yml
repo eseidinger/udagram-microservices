@@ -1,0 +1,25 @@
+language: minimal
+
+services: docker
+
+before_install:
+  - docker -v && docker-compose -v
+  - curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.15.12/2020-11-02/bin/linux/amd64/kubectl
+  - chmod +x ./kubectl
+  - sudo mv ./kubectl /usr/local/bin/kubectl
+  - curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.9/2020-11-02/bin/linux/amd64/aws-iam-authenticator
+  - chmod +x ./aws-iam-authenticator
+  - sudo mv ./aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
+  - export KUBECONFIG=$PWD/udacity-c3-deployment/k8s/kubeconfig.yaml
+
+install:
+  - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel 
+  - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml push
+  - kubectl apply -f udacity-c3-deployment/k8s/backend-feed-deployment.yaml
+  - kubectl apply -f udacity-c3-deployment/k8s/backend-feed-service.yaml
+  - kubectl apply -f udacity-c3-deployment/k8s/backend-user-deployment.yaml
+  - kubectl apply -f udacity-c3-deployment/k8s/backend-user-service.yaml
+  - kubectl apply -f udacity-c3-deployment/k8s/reverseproxy-deployment.yaml
+  - kubectl apply -f udacity-c3-deployment/k8s/reverseproxy-service.yaml
+  - kubectl apply -f udacity-c3-deployment/k8s/frontend-deployment.yaml
+  - kubectl apply -f udacity-c3-deployment/k8s/frontend-service.yaml
