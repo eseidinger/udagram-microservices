@@ -12,7 +12,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-      - image: eseidinger/reverseproxy
+      - image: eseidinger/reverseproxy:main
         name: reverseproxy
         imagePullPolicy: Always          
         resources:

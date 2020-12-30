@@ -13,7 +13,7 @@ spec:
         api: external        
     spec:
       containers:
-      - image: eseidinger/udacity-frontend:local
+      - image: eseidinger/udacity-frontend:main
         name: frontend
         imagePullPolicy: Always          
         ports:
