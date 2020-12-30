@@ -3,16 +3,16 @@ services:
   reverseproxy:
     build:
       context: .
-    image: eseidinger/reverseproxy:main
+    image: eseidinger/reverseproxy:mybranch
   backend_user:
     build:
       context: ../../udacity-c3-restapi-user
-    image: eseidinger/udacity-restapi-user:main
+    image: eseidinger/udacity-restapi-user:mybranch
   backend_feed:
     build:
       context: ../../udacity-c3-restapi-feed  
-    image: eseidinger/udacity-restapi-feed:main
+    image: eseidinger/udacity-restapi-feed:mybranch
   frontend:
     build:
       context: ../../udacity-c3-frontend  
-    image: eseidinger/udacity-frontend:main
+    image: eseidinger/udacity-frontend:mybranch

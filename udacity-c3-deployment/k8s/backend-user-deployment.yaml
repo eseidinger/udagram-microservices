@@ -12,7 +12,7 @@ spec:
         service: backend-user
     spec:
       containers:
-      - image: eseidinger/udacity-restapi-user:main
+      - image: eseidinger/udacity-restapi-user:mybranch
         name: backend-user 
         imagePullPolicy: Always  
         resources:
