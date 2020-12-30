@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     service: reverseproxy
-  name: reverseproxy
+  name: reverseproxy-mybranch
 spec:
   replicas: 1
   template:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - image: eseidinger/reverseproxy:mybranch
-        name: reverseproxy
+        name: reverseproxy-mybranch
         imagePullPolicy: Always          
         resources:
           requests:

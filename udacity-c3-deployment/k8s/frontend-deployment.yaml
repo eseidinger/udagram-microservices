@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     service: frontend
-  name: frontend
+  name: frontend-mybranch
 spec:
   replicas: 1
   template:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - image: eseidinger/udacity-frontend:mybranch
-        name: frontend
+        name: frontend-mybranch
         imagePullPolicy: Always          
         ports:
         - containerPort: 80

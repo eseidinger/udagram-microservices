@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     service: backend-user
-  name: backend-user
+  name: backend-user-mybranch
 spec:
   replicas: 1
   template:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - image: eseidinger/udacity-restapi-user:mybranch
-        name: backend-user 
+        name: backend-user-mybranch
         imagePullPolicy: Always  
         resources:
           requests:

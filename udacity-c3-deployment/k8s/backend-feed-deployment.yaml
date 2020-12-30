@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     service: backend-feed
-  name: backend-feed
+  name: backend-feed-mybranch
 spec:
   replicas: 1
   template:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - image: eseidinger/udacity-restapi-feed:mybranch
-        name: backend-feed
+        name: backend-feed-mybranch
         imagePullPolicy: Always  
         resources:
           requests:
