@@ -13,7 +13,7 @@ before_install:
   - export KUBECONFIG=$PWD/udacity-c3-deployment/k8s/kubeconfig.yaml
 
 install:
-  - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel 
+  - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build
   - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml push
   - kubectl apply -f udacity-c3-deployment/k8s/backend-feed-deployment.yaml
   - kubectl apply -f udacity-c3-deployment/k8s/backend-feed-service.yaml
