@@ -11,6 +11,7 @@ before_install:
   - chmod +x ./aws-iam-authenticator
   - sudo mv ./aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
   - export KUBECONFIG=$PWD/udacity-c3-deployment/k8s/kubeconfig.yaml
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 install:
   - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yaml build
